@@ -3,11 +3,11 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Leone Veiga Muniz</title>
+    <title>Plus and Times</title>
     <meta name="viewport" content="width=device-width">
-    <meta name="description" content="Leone Veiga é engenheiro eletricista, com mestrado na área. Possui experiência na área de telecomunicações, automação industrial e eletrônica (analógica e digital).">
-    <meta name="author" content="Veiga Leone">
-    <link rel="canonical" href="https://www.leoneveiga.com.br/">
+    <meta name="description" content="Math game">
+    
+    <link rel="canonical" href="https://www.plusandtimes.com/">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
 
     <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
@@ -45,6 +45,7 @@
   line-height: 30px;
   color: white;
 }
+
 </style>
 
 
@@ -60,8 +61,6 @@
 <header>
 
         <div class="row">
-
-
 
                 <script>
 
@@ -119,9 +118,9 @@
 
                         alert('Level 01 completed!');
 
-        window.location="level2.html";   // <<  redirecionar
+                        window.location="level2.html";   // <<  redirecionar
         
-    }
+                    }
 
                     }
 
@@ -130,22 +129,35 @@
         <!-- ============================================ -->
 
         <div class="intro-text">
-            <p>Sorteia os números e mostra a soma e o produto</p>
-            <p style="font-size:0px"> A  = <a id="n1"></a></p>
-            <p style="font-size:0px"> B  = <a id="n2"></a></p>
-            <p class="name"> A + B  = <a id="soma">   </a></p>
-            <p class="name"> A &times; B  = <a id="produto"></a></p>
+            <div class="row">
+                <p style="font-size:0px"> A  = <a id="n1"></a></p>
+                <p style="font-size:0px"> B  = <a id="n2"></a></p>
+                <div class="col-sm-3 col-xs-2"></div>
+                <div class="col-sm-6 col-xs-8">
+                    <p class="name">  A + B  = <a style="color:white;" id="soma" >   </a></p>
+                    <p class="name"> A &times; B  = <a style="color:white;" id="produto"></a></p>
+                </div>
+
+                <div class="col-sm-3 col-xs-2"></div>
+            </div>
         </div>
         <hr> <!-- Formulário ===================================== -->
 
-        <p>Entrar com os valores:</p>
-
         <div class="intro-text">
-          <p class="name"> A = <input type="text" name="Au" id="user_A" style="width: 200px"> </p>
-          <p class="name"> B = <input type="text" name="Bu" id="user_B" style="width: 200px"> </p>
+            <div class="row">
+                <div class="col-sm-4 col-xs-3"></div>
+                <div class="col-sm-2 col-xs-3">
+                    <p class="name"> A = <input style="color:blue; width: 50px; height:5vw; text-align:center;" type="text" name="Au" id="user_A" > </p>
+                </div>
+
+                <div class="col-sm-2 col-xs-3">  
+                    <p class="name"> B = <input style="color:blue; width: 50px; height:5vw; text-align:center;" type="text" name="Bu" id="user_B" > </p>
+                </div>
+
+                <div class="col-sm-4 col-xs-3"></div>
+            </div>
         </div>
-        
-        <br>
+
 
         <!-- Mostrar os números digitados ==================== -->
 
@@ -158,15 +170,16 @@
 
         <h4>Level 01 progress:</h4>
 
-        <div id="myProgress">
-          <div id="myBar"></div>
-        </div>
-
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div id="myProgress">
+                </div>
+                <div id="myBar"></div>
+            <div class="col-sm-3"></div>
+            </div>
+        </div>        
         <!-- alert("Hello! I am an alert box!!"); -->
-
-        <div class="intro-text">
-            <span class="skills"> Subtítulo </span>
-        </div>
 
         </div>
 
@@ -186,7 +199,7 @@
     </footer>
 
 
-     <!-- jQuery Version 1.11.0 -->
+   <!--  <!-- jQuery Version 1.11.0 -->
     <script src="/js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -207,6 +220,6 @@
     <script src="/js/freelancer.js"></script>
 
     
-
+ -->
     </body>
 </html>
