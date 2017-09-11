@@ -299,6 +299,14 @@ header .intro-text .intro-lead-in {
     line-height: 22px;
 }
 
+header .intro-text .intro-lead-in2 {
+    margin-bottom: 25px;
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 14px;
+}
+
 header .intro-text .intro-heading {
     margin-bottom: 25px;
     text-transform: uppercase;
@@ -320,6 +328,14 @@ header .intro-text .intro-heading {
         font-size: 40px;
         font-style: italic;
         line-height: 40px;
+    }
+
+    header .intro-text .intro-lead-in2 {
+        margin-bottom: 25px;
+        font-family: "Droid Serif", "Helvetica Neue", Helvetica,Arial,sans-serif;
+        font-size: 32px;
+        font-style: italic;
+        line-height: 32px;
     }
 
     header .intro-text .intro-heading {
