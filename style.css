@@ -184,7 +184,8 @@ fieldset[disabled] .btn-xl.active {
 }
 
 .navbar-default .navbar-brand {
-    font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,cursive;
+   /* font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,cursive; */
+   font-family: "Helvetica Neue",Helvetica,Arial,cursive;
     color: #0b67e0;
 }
 
