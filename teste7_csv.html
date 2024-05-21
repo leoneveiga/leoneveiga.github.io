@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtrar Cursos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+        .filter-item {
+            display: flex;
+            align-items: center;
+        }
+        .filter-container label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .filter-container input, .filter-container select {
+            padding: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex: 0 1 auto;
+            min-width: 120px;
+            max-width: 150px;
+            font-size: 14px;
+        }
+        .table-container {
+            overflow-y: auto;
+            max-height: 400px; /* Defina a altura máxima desejada */
+        }
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #ff8400;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Ajuste da largura mínima da coluna "Área" */
+        th:first-child, td:first-child {
+            min-width: 180px;
+        }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 600px) {
+            .filter-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .filter-item {
+                width: 100%;
+                justify-content: center;
+            }
+            .filter-container input, .filter-container select {
+                max-width: 100%;
+            }
+            table {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Carregar o arquivo CSV
+            fetch('dados.tsv')
+                .then(response => response.text())
+                .then(data => {
+                    const linhas = data.trim().split('\n');
+                    const tabela = document.getElementById('tabelaCursos').getElementsByTagName('tbody')[0];
+
+                    const areas = new Set();
+                    linhas.slice(1).forEach(linha => {
+                        const colunas = linha.split(';');
+                        areas.add(colunas[0]);
+                        const linhaTabela = document.createElement('tr');
+
+                        // Coluna 1: Área
+                        const areaCell = document.createElement('td');
+                        areaCell.textContent = colunas[0];
+                        linhaTabela.appendChild(areaCell);
+
+                        // Coluna 2: Nome do curso com link
+                        const cursoCell = document.createElement('td');
+                        const link = document.createElement('a');
+                        link.href = colunas[2];
+                        link.textContent = colunas[1];
+                        link.target = "_blank"; // Abre o link em uma nova aba
+                        cursoCell.appendChild(link);
+                        linhaTabela.appendChild(cursoCell);
+
+                        tabela.appendChild(linhaTabela);
+                    });
+
+                    const areaFiltro = document.getElementById('areaFiltro');
+                    areas.forEach(area => {
+                        const option = document.createElement('option');
+                        option.value = area.toLowerCase();
+                        option.textContent = area;
+                        areaFiltro.appendChild(option);
+                    });
+
+                    document.getElementById('areaFiltro').addEventListener('change', filtrarTabela);
+                    document.getElementById('cursoFiltro').addEventListener('keyup', filtrarTabela);
+                })
+                .catch(error => console.error('Erro ao carregar o arquivo CSV:', error));
+        });
+
+        function filtrarTabela() {
+            const areaFiltro = document.getElementById("areaFiltro").value.toLowerCase();
+            const cursoFiltro = document.getElementById("cursoFiltro").value.toLowerCase();
+            
+            const tabela = document.getElementById("tabelaCursos");
+            const linhas = tabela.getElementsByTagName("tr");
+            
+            for (let i = 1; i < linhas.length; i++) {
+                const colunas = linhas[i].getElementsByTagName("td");
+                const area = colunas[0].textContent.toLowerCase();
+                const curso = colunas[1].textContent.toLowerCase();
+                
+                if ((areaFiltro === "" || area.includes(areaFiltro)) &&
+                    curso.includes(cursoFiltro)) {
+                    linhas[i].style.display = "";
+                } else {
+                    linhas[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Filtrar Cursos</h1>
+    <div class="filter-container">
+        <div class="filter-item">
+            <label for="areaFiltro">Área:</label>
+            <select id="areaFiltro">
+                <option value="">Todas</option>
+            </select>
+        </div>
+        
+        <div class="filter-item">
+            <label for="cursoFiltro">Curso:</label>
+            <input type="text" id="cursoFiltro">
+        </div>
+    </div>
+    
+    <div class="table-container">
+        <div class="table-responsive">
+            <table id="tabelaCursos">
+                <thead>
+                    <tr>
+                        <th>Área</th>
+                        <th>Curso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- As linhas da tabela serão inseridas aqui via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
